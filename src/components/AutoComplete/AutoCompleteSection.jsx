@@ -218,13 +218,13 @@ export const AutoCompleteSection = () => {
     }
   };
 
-  const onBtnClick = () => {
-    const array = getListRoutes();
-    const sorted = array.sort((a, b) => (a.euro_price > b.euro_price ? 1 : -1));
-    setRoutesList(sorted);
-    console.log(sorted);
-    console.log(routesList);
-  };
+  // const onBtnClick = () => {
+  //   const array = getListRoutes();
+  //   const sorted = array.sort((a, b) => (a.euro_price > b.euro_price ? 1 : -1));
+  //   setRoutesList(sorted);
+  //   console.log(sorted);
+  //   console.log(routesList);
+  // };
   //   import travelData from "../../cheapTripData/routes.json";
   // import dataNew from "../../cheapTripData/locations.json";
 
