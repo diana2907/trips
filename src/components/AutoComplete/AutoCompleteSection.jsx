@@ -153,35 +153,31 @@ export const AutoCompleteSection = () => {
     setIsFailResult(false);
   };
   const handleClickResults = () => {
-    if (cityNameTo === "Anywhere") {
-      const array = getListRoutes();
-      const sorted = array.sort((a, b) =>
-        a.euro_price > b.euro_price ? 1 : -1
-      );
-      setRoutesList(sorted);
-      console.log(sorted);
-      console.log(routesList);
-    }
-    const result = [];
-    // console.log(myJson);
-    // console.log(myJson2);
-    const cityFromYouTravel = findCityData(myJson);
-    const cityToYouTravel = findCityData(myJson2);
-    // console.log(cityFromYouTravel);
+    if (cityNameTo !== "Anywhere") {
+      setRoutesList([]);
+      const result = [];
+      // console.log(myJson);
+      // console.log(myJson2);
+      const cityFromYouTravel = findCityData(myJson);
+      const cityToYouTravel = findCityData(myJson2);
+      // console.log(cityFromYouTravel);
 
-    result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
-    console.log(result);
-    if (
-      result[0] === "We have not found such a route" ||
-      result[0].length === 0
-      // result[0] === []
-    ) {
-      setIsResult(false);
-      setIsFailResult(true);
-    } else {
-      setIsResult(true);
-      setIsFailResult(false);
-      setResultOfSearch(result);
+      result.push(findRoutes(cityFromYouTravel, cityToYouTravel));
+      console.log(result);
+      if (
+        result[0] === "We have not found such a route" ||
+        result[0].length === 0
+        // result[0] === []
+      ) {
+        setIsResult(false);
+        setIsFailResult(true);
+      } else {
+        setIsResult(true);
+        setIsFailResult(false);
+        setResultOfSearch(result);
+      }
+    } else if (cityNameTo === "Anywhere") {
+      onBtnClick();
     }
   };
 
@@ -218,15 +214,13 @@ export const AutoCompleteSection = () => {
     }
   };
 
-  // const onBtnClick = () => {
-  //   const array = getListRoutes();
-  //   const sorted = array.sort((a, b) => (a.euro_price > b.euro_price ? 1 : -1));
-  //   setRoutesList(sorted);
-  //   console.log(sorted);
-  //   console.log(routesList);
-  // };
-  //   import travelData from "../../cheapTripData/routes.json";
-  // import dataNew from "../../cheapTripData/locations.json";
+  const onBtnClick = () => {
+    const array = getListRoutes();
+    const sorted = array.sort((a, b) => (a.euro_price > b.euro_price ? 1 : -1));
+    setRoutesList(sorted);
+    console.log(sorted);
+    console.log(routesList);
+  };
 
   return (
     <div>

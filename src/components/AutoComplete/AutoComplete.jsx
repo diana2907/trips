@@ -40,7 +40,7 @@ export default function AutoComplete({
           setTimeout(() => {
             setOptionsActive(false);
             setIsActiveTo(false);
-            // setOptions([])
+            setOptions([]);
           }, 100);
         }}
         onFocus={onFocus}
@@ -50,6 +50,7 @@ export default function AutoComplete({
           <li
             onClick={() => {
               setValue("Anywhere");
+              setJson([]);
             }}
           >
             Anywhere

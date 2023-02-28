@@ -12,6 +12,6 @@ export default function IsSecondStep({ json, resultClick, setJson }) {
       });
       setJson([]);
     }
-  }, []);
+  });
   return <p>Done</p>;
 }
