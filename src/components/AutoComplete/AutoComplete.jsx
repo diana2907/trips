@@ -72,7 +72,6 @@ export default function AutoComplete({
         {json &&
           json.length > 1 &&
           json.slice(0, 10).map((city) => {
-            // console.log("city from AutoComplete", city)
             const formattingCity = nameOfCity(city);
             return (
               <AutoCompleteItemSecondStep

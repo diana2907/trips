@@ -177,6 +177,7 @@ export const AutoCompleteSection = () => {
         setResultOfSearch(result);
       }
     } else if (cityNameTo === "Anywhere") {
+      setRoutesList([]);
       onBtnClick();
     }
   };
@@ -184,33 +185,37 @@ export const AutoCompleteSection = () => {
   const getIdByCityFrom = (cityName) => {
     const values = Object.values(dataNew);
     const filtered = values.filter((item) => cityName === item.name);
-    console.log(filtered);
     return filtered[0].id;
   };
 
   const getListRoutes = () => {
-    getCitiesToListById();
     const cityFromId = getIdByCityFrom(cityName);
     const values = Object.values(travelData);
     const filtered = values.filter((item) => cityFromId === item.from);
+    getCitiesToListById(filtered);
     return filtered;
   };
 
-  const getCitiesToListById = () => {
+  const getCitiesToListById = (filterArray) => {
     const values = Object.values(dataNew);
-    const travelValues = Object.values(travelData);
-
-    let cache = {};
+    let cache;
     const ln1 = values.length;
-    const ln2 = routesList.length;
+    for (let i = 0; i < filterArray.length; i++) {
+      routesList[i] = filterArray[i];
+    }
     for (let i = 0; i < ln1; ++i) {
       cache = values[i];
-      for (let j = 0; j < ln2; ++j) {
-        if (cache.id === routesList[j].to) {
-          routesList[j].city = cache.name;
-          routesList[j].country = cache.country_name;
-        }
-      }
+      setRoutesList(
+        routesList.map((item) => {
+          if (cache.id === item.to) {
+            item.city = cache.name;
+            item.country = cache.country_name;
+            return routesList.push(item);
+          } else {
+            return item;
+          }
+        })
+      );
     }
   };
 
@@ -218,8 +223,9 @@ export const AutoCompleteSection = () => {
     const array = getListRoutes();
     const sorted = array.sort((a, b) => (a.euro_price > b.euro_price ? 1 : -1));
     setRoutesList(sorted);
+
+    // console.log(sorted);
     console.log(sorted);
-    console.log(routesList);
   };
 
   return (
