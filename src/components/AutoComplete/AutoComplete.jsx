@@ -16,8 +16,17 @@ export default function AutoComplete({
   setOptions,
   resultClick,
   findCities,
+  // isInputTo,
+  isActiveTo,
+  setIsActiveTo,
 }) {
   const [optionsActive, setOptionsActive] = useState(false);
+
+  const onFocus = () => {
+    // if (!optionsActive) {
+    setOptionsActive(true);
+    setIsActiveTo(true);
+  };
 
   return (
     <div className="autoComplete">
@@ -29,11 +38,23 @@ export default function AutoComplete({
         onClick={!optionsActive ? setOptionsActive(true) : undefined}
         onBlur={() => {
           setTimeout(() => {
+            setOptionsActive(false);
+            setIsActiveTo(false);
             // setOptions([])
-          }, 200);
+          }, 100);
         }}
+        onFocus={onFocus}
       />
       <ul>
+        {!options.length && isActiveTo && !value ? (
+          <li
+            onClick={() => {
+              setValue("Enywhere");
+            }}
+          >
+            Enywhere
+          </li>
+        ) : undefined}
         {options &&
           options
             .slice(0, 10)
