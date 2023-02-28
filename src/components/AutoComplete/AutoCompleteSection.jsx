@@ -153,6 +153,15 @@ export const AutoCompleteSection = () => {
     setIsFailResult(false);
   };
   const handleClickResults = () => {
+    if (cityNameTo === "Anywhere") {
+      const array = getListRoutes();
+      const sorted = array.sort((a, b) =>
+        a.euro_price > b.euro_price ? 1 : -1
+      );
+      setRoutesList(sorted);
+      console.log(sorted);
+      console.log(routesList);
+    }
     const result = [];
     // console.log(myJson);
     // console.log(myJson2);
@@ -195,7 +204,7 @@ export const AutoCompleteSection = () => {
     const values = Object.values(dataNew);
     const travelValues = Object.values(travelData);
 
-    let cache ={};
+    let cache = {};
     const ln1 = values.length;
     const ln2 = routesList.length;
     for (let i = 0; i < ln1; ++i) {
@@ -279,7 +288,7 @@ export const AutoCompleteSection = () => {
         <Button
           variant="contained"
           color="primary"
-          onClick={onBtnClick}
+          onClick={() => handleClickResults()}
           style={{ marginLeft: "10px" }}
           type="button"
         >

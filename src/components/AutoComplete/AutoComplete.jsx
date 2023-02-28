@@ -49,10 +49,10 @@ export default function AutoComplete({
         {!options.length && isActiveTo && !value ? (
           <li
             onClick={() => {
-              setValue("Enywhere");
+              setValue("Anywhere");
             }}
           >
-            Enywhere
+            Anywhere
           </li>
         ) : undefined}
         {options &&
