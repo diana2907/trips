@@ -193,14 +193,15 @@ export const AutoCompleteSection = () => {
 
   const getCitiesToListById = () => {
     const values = Object.values(dataNew);
+    const travelValues = Object.values(travelData);
 
-    let cache;
+    let cache ={};
     const ln1 = values.length;
     const ln2 = routesList.length;
-    for (var i = 0; i < ln1; ++i) {
+    for (let i = 0; i < ln1; ++i) {
       cache = values[i];
-      for (var j = 0; j < ln2; ++j) {
-        if (cache.id == routesList[j].to) {
+      for (let j = 0; j < ln2; ++j) {
+        if (cache.id === routesList[j].to) {
           routesList[j].city = cache.name;
           routesList[j].country = cache.country_name;
         }
